@@ -319,6 +319,23 @@
     "reset_failed": "重置失败，请稍后重试",
     "back_to_forgot": "返回找回密码"
   },
+  "payment": {
+    "error_title": "支付失败",
+    "error_description": "支付过程中遇到问题",
+    "error_page_title": "支付错误",
+    "error_page_description": "您的支付未能成功完成",
+    "error_default": "支付过程中发生错误，请重试",
+    "error_signature_invalid": "签名验证失败，请联系客服",
+    "error_payment_failed": "支付失败，请检查您的支付信息",
+    "error_payment_cancelled": "您已取消支付",
+    "error_payment_expired": "支付会话已过期，请重新发起支付",
+    "error_processing_failed": "支付处理失败，请稍后重试",
+    "error_user_not_found": "用户信息未找到，请重新登录",
+    "error_retry_payment": "重新购买",
+    "error_back_to_home": "返回首页",
+    "error_contact_support": "如果问题持续存在，请联系",
+    "error_technical_support": "技术支持"
+  },
   "profile": {
     "title": "个人中心",
     "description": "查看和管理您的账户信息",

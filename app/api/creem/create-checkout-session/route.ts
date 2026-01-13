@@ -6,9 +6,10 @@ import { nanoid } from 'nanoid'
 
 export async function POST(req: NextRequest) {
   try {
+    console.log('Request body:1111111111111111111111111111111111111')
     // 验证用户登录状态
     const session = await getServerSession(authOptions)
-    
+
     if (!session?.user?.email) {
       return NextResponse.json(
         { error: 'Unauthorized - Please login first' },
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     // 根据积分数量获取对应的产品配置
     const product = getCreemProductByPoints(points)
-    
+
     if (!product) {
       return NextResponse.json(
         { error: 'Invalid product' },
@@ -48,8 +49,8 @@ export async function POST(req: NextRequest) {
     const requestId = nanoid()
 
     // 获取应用的基础URL
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
-                    process.env.NEXTAUTH_URL || 
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ||
+                    process.env.NEXTAUTH_URL ||
                     req.nextUrl.origin
 
     // 创建Creem结账会话
@@ -67,7 +68,7 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       url: checkoutSession.checkout_url,
       sessionId: checkoutSession.id,
     })

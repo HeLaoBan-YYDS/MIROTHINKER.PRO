@@ -338,6 +338,23 @@
     "reset_failed": "Reset failed, please try again later",
     "back_to_forgot": "Back to Forgot Password"
   },
+  "payment": {
+    "error_title": "Payment Failed",
+    "error_description": "An error occurred during payment",
+    "error_page_title": "Payment Error",
+    "error_page_description": "Your payment was not completed successfully",
+    "error_default": "An error occurred during payment, please try again",
+    "error_signature_invalid": "Signature verification failed, please contact support",
+    "error_payment_failed": "Payment failed, please check your payment information",
+    "error_payment_cancelled": "You have cancelled the payment",
+    "error_payment_expired": "Payment session expired, please initiate payment again",
+    "error_processing_failed": "Payment processing failed, please try again later",
+    "error_user_not_found": "User information not found, please log in again",
+    "error_retry_payment": "Retry Purchase",
+    "error_back_to_home": "Back to Home",
+    "error_contact_support": "If the problem persists, please contact",
+    "error_technical_support": "Technical Support"
+  },
   "profile": {
     "title": "Profile",
     "description": "View and manage your account information",

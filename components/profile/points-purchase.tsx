@@ -7,22 +7,22 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Star, CreditCard, History, Clock } from 'lucide-react'
 import { toast } from 'sonner'
-import { POINTS_PRODUCTS } from '@/lib/stripe'
+import { CREEM_PRODUCTS } from '@/lib/creem'
 
 interface PointsPackage {
   id: string
   points: number
   price: number
-  priceId: string
+  productId: string
   popular?: boolean
 }
 
 // 使用配置文件中的积分套餐
-const pointsPackages: PointsPackage[] = Object.values(POINTS_PRODUCTS).map(pkg => ({
+const pointsPackages: PointsPackage[] = Object.values(CREEM_PRODUCTS).map(pkg => ({
   id: pkg.id,
   points: pkg.points,
   price: pkg.price,
-  priceId: pkg.priceId,
+  productId: pkg.productId,
   popular: 'popular' in pkg ? pkg.popular : false,
 }))
 
@@ -45,29 +45,27 @@ export function PointsPurchase({ onPointsUpdate }: { onPointsUpdate?: () => void
     setLoading(pkg.id)
     
     try {
-      // 创建Stripe Checkout会话
-      const response = await fetch('/api/stripe/create-checkout-session', {
+      // 创建Creem Checkout会话
+      const response = await fetch('/api/creem/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           points: pkg.points,
-          amount: pkg.price * 100, // 转换为分
-          priceId: pkg.priceId,
         }),
       })
 
-      const { url, error } = await response.json()
+      const data = await response.json()
 
-      if (error) {
-        toast.error(error)
+      if (data.error) {
+        toast.error(data.error)
         return
       }
 
-      if (url) {
-        // 跳转到Stripe Checkout页面
-        window.location.href = url
+      if (data.url) {
+        // 跳转到Creem Checkout页面
+        window.location.href = data.url
       }
     } catch (error) {
       console.error('创建支付会话失败:', error)

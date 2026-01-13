@@ -1,0 +1,71 @@
+====================================================================
+  Creem 支付配置 - 请将以下内容添加到你的 .env 文件
+====================================================================
+
+# Creem API 配置
+CREEM_API_URL=https://test-api.creem.io
+CREEM_API_KEY=your_creem_api_key_here
+
+# Creem 产品 ID (在 Creem 后台创建产品后获取)
+CREEM_PRODUCT_STARTER_ID=prod_starter_xxxxx
+CREEM_PRODUCT_POPULAR_ID=prod_popular_xxxxx
+CREEM_PRODUCT_PREMIUM_ID=prod_premium_xxxxx
+
+# Webhook Secret (可选)
+CREEM_WEBHOOK_SECRET=your_webhook_secret_here
+
+# 应用 URL (用于支付回调)
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXTAUTH_URL=http://localhost:3000
+
+====================================================================
+  配置说明
+====================================================================
+
+1. 注册 Creem 账户: https://creem.io
+
+2. 获取 API Key:
+   - 登录 Creem 控制台
+   - 进入开发者设置
+   - 创建或复制 API Key
+   - 替换 CREEM_API_KEY 的值
+
+3. 创建产品 (在 Creem 后台):
+   
+   产品 1 - 入门套餐:
+   - 名称: 入门套餐 / Starter Package
+   - 价格: $8.00
+   - 描述: 5,000 积分
+   - 复制 Product ID 到 CREEM_PRODUCT_STARTER_ID
+   
+   产品 2 - 热门套餐:
+   - 名称: 热门套餐 / Popular Package
+   - 价格: $15.00
+   - 描述: 10,000 积分
+   - 复制 Product ID 到 CREEM_PRODUCT_POPULAR_ID
+   
+   产品 3 - 高级套餐:
+   - 名称: 高级套餐 / Premium Package
+   - 价格: $150.00
+   - 描述: 100,000 积分
+   - 复制 Product ID 到 CREEM_PRODUCT_PREMIUM_ID
+
+4. 配置 Webhook:
+   - Webhook URL: https://yourdomain.com/api/creem/webhook
+   - 本地测试可使用 ngrok: ngrok http 3000
+   - 选择事件: checkout.completed, payment.succeeded, 
+               checkout.expired, payment.failed
+
+5. 测试:
+   - 运行 npm run dev
+   - 访问 http://localhost:3000/profile
+   - 测试购买流程
+
+====================================================================
+  详细文档
+====================================================================
+
+查看完整配置指南: ./CREEM_SETUP.md
+查看详细文档: ./docs/creem-configuration.md
+
+====================================================================

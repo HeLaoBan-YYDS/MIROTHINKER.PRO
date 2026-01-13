@@ -6,7 +6,6 @@ import { nanoid } from 'nanoid'
 
 export async function POST(req: NextRequest) {
   try {
-    console.log('Request body:1111111111111111111111111111111111111')
     // 验证用户登录状态
     const session = await getServerSession(authOptions)
 

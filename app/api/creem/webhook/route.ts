@@ -3,227 +3,385 @@ import { db } from '@/lib/db'
 import { users, pointsHistory, stripePayments } from '@/lib/schema'
 import { eq, sql } from 'drizzle-orm'
 import { getCreemProductByPoints } from '@/lib/creem'
-import { verifySignature } from '@/app/api/creem/signature'
+import { verifyWebhookSignature } from '@/app/api/creem/signature'
 import { nanoid } from 'nanoid'
 
 /**
  * Creem Webhook处理
- * 处理支付成功、失败等事件
+ * 根据 Creem 官方文档实现
+ * https://docs.creem.io/webhooks
  */
 export async function POST(req: NextRequest) {
   try {
-    // 获取webhook数据
+    // 获取原始请求体（用于签名验证）
     const body = await req.text()
-    const signature = req.headers.get('x-creem-signature') || ''
+    const signature = req.headers.get('creem-signature') || ''
 
-    // 验证webhook签名
+    console.log('=== Creem Webhook 开始处理 ===')
+    console.log('签名:', signature ? '已提供' : '未提供')
+
+    // 验证 webhook 签名
     if (signature) {
-      const event = JSON.parse(body)
-      const isValid = verifySignature(event, signature)
+      const isValid = verifyWebhookSignature(body, signature)
       
       if (!isValid) {
-        console.error('Invalid webhook signature')
+        console.error('❌ 签名验证失败')
         return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
       }
       
-      console.log('Webhook signature verified successfully')
+      console.log('✅ 签名验证成功')
     } else {
-      console.warn('No signature provided in webhook request')
+      console.warn('⚠️ 未提供签名，跳过签名验证（仅用于测试）')
     }
 
-    const event = JSON.parse(body)
+    // 解析 JSON
+    let event: any
+    try {
+      event = JSON.parse(body)
+    } catch (parseError) {
+      console.error('❌ JSON解析失败:', parseError)
+      return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
+    }
 
-    console.log('Received Creem webhook event:', event.type || event.event_type)
+    console.log('Webhook原始数据:', JSON.stringify(event, null, 2))
 
-    // 根据不同的事件类型处理
-    switch (event.type || event.event_type) {
+    // 提取事件类型（根据 Creem 文档）
+    const eventType = event.eventType
+    const eventId = event.id
+    const eventObject = event.object
+
+    console.log('事件ID:', eventId)
+    console.log('事件类型:', eventType)
+
+    if (!eventType) {
+      console.error('❌ 缺少事件类型')
+      return NextResponse.json({ error: 'Missing event type' }, { status: 400 })
+    }
+
+    // 根据事件类型处理
+    switch (eventType) {
       case 'checkout.completed':
-      case 'payment.succeeded':
-        await handlePaymentSuccess(event)
+        await handleCheckoutCompleted(event)
         break
       
-      case 'checkout.expired':
-      case 'payment.failed':
-      case 'payment.cancelled':
-        await handlePaymentFailed(event)
+      case 'subscription.paid':
+        await handleSubscriptionPaid(event)
+        break
+      
+      case 'subscription.active':
+        console.log('ℹ️ 订阅激活事件（用于同步）')
+        // 通常不需要处理，因为 checkout.completed 已经处理了
+        break
+      
+      case 'subscription.canceled':
+        await handleSubscriptionCanceled(event)
+        break
+      
+      case 'subscription.expired':
+        await handleSubscriptionExpired(event)
+        break
+      
+      case 'refund.created':
+        await handleRefundCreated(event)
         break
       
       default:
-        console.log('Unhandled Creem event type:', event.type || event.event_type)
+        console.log('⚠️ 未处理的事件类型:', eventType)
     }
 
+    console.log('=== Creem Webhook 处理完成 ===')
     return NextResponse.json({ received: true })
 
   } catch (error: any) {
-    console.error('Error processing Creem webhook:', error)
+    console.error('❌ Webhook处理失败:', error)
+    console.error('错误堆栈:', error.stack)
     return NextResponse.json(
-      { error: 'Webhook processing failed' },
+      { error: 'Webhook processing failed', details: error.message },
       { status: 500 }
     )
   }
 }
 
 /**
- * 处理支付成功事件
+ * 处理结账完成事件
+ * 这是最重要的事件，在用户完成支付后触发
  */
-async function handlePaymentSuccess(event: any) {
+async function handleCheckoutCompleted(event: any) {
+  console.log('--- 处理结账完成事件 ---')
+  
   try {
-    // 从event中提取metadata
-    const metadata = event.data?.metadata || event.metadata || {}
-    const { userId, userEmail, points, productId, requestId } = metadata
+    const eventObject = event.object
+    if (!eventObject) {
+      console.error('❌ 缺少 object 字段')
+      return
+    }
 
-    if (!userId || !points) {
-      console.error('Missing required metadata in webhook:', metadata)
+    // 提取数据（根据 Creem 文档结构）
+    const checkoutId = eventObject.id
+    const requestId = eventObject.request_id
+    const order = eventObject.order
+    const product = eventObject.product
+    const customer = eventObject.customer
+    const subscription = eventObject.subscription
+    const metadata = eventObject.metadata || {}
+
+    console.log('结账信息:', {
+      checkoutId,
+      requestId,
+      orderId: order?.id,
+      productId: product?.id,
+      customerId: customer?.id,
+      metadata
+    })
+
+    // 从 metadata 中提取用户信息
+    const userId = metadata.userId || metadata.user_id || metadata.internal_customer_id
+    const points = metadata.points ? parseInt(metadata.points) : null
+
+    console.log('提取的用户信息:', {
+      userId,
+      points,
+      customerEmail: customer?.email
+    })
+
+    if (!userId) {
+      console.error('❌ metadata 中缺少 userId')
+      console.error('完整 metadata:', JSON.stringify(metadata, null, 2))
+      return
+    }
+
+    if (!points) {
+      console.error('❌ metadata 中缺少 points')
+      console.error('完整 metadata:', JSON.stringify(metadata, null, 2))
       return
     }
 
     // 获取产品配置
-    const product = getCreemProductByPoints(parseInt(points))
+    const productConfig = getCreemProductByPoints(points)
     
-    if (!product) {
-      console.error('Invalid product points:', points)
+    if (!productConfig) {
+      console.error('❌ 无效的积分数量:', points)
       return
     }
 
-    console.log(`Processing payment success for user ${userId}, adding ${points} points`)
+    console.log('找到产品配置:', {
+      name: productConfig.name,
+      points: productConfig.points,
+      price: productConfig.price
+    })
 
-    // 检查是否已经处理过这个支付（防止重复处理）
-    const checkoutSessionId = event.data?.id || event.id
-    if (checkoutSessionId) {
+    // 检查是否已处理（防重复）
+    if (checkoutId) {
       const existingPayment = await db
         .select()
         .from(stripePayments)
-        .where(eq(stripePayments.checkoutSessionId, checkoutSessionId))
+        .where(eq(stripePayments.checkoutSessionId, checkoutId))
         .limit(1)
 
       if (existingPayment.length > 0) {
-        console.log('Payment already processed, skipping:', checkoutSessionId)
+        console.log('⚠️ 支付已处理过，跳过:', checkoutId)
         return
       }
     }
 
+    console.log(`💰 准备为用户 ${userId} 增加 ${points} 积分`)
+
     // 更新用户积分
-    const [user] = await db
+    const updatedUsers = await db
       .update(users)
       .set({
-        points: sql`${users.points} + ${parseInt(points)}`,
-        purchasedPoints: sql`${users.purchasedPoints} + ${parseInt(points)}`,
+        points: sql`${users.points} + ${points}`,
+        purchasedPoints: sql`${users.purchasedPoints} + ${points}`,
         updatedAt: new Date(),
       })
       .where(eq(users.id, userId))
       .returning()
 
-    if (!user) {
-      console.error('User not found:', userId)
+    if (!updatedUsers || updatedUsers.length === 0) {
+      console.error('❌ 用户不存在:', userId)
       return
     }
 
+    const user = updatedUsers[0]
+    console.log('✅ 用户积分更新成功:', {
+      userId: user.id,
+      newPoints: user.points,
+      newPurchasedPoints: user.purchasedPoints
+    })
+
     // 记录积分历史
+    const historyId = nanoid()
     await db.insert(pointsHistory).values({
-      id: nanoid(),
+      id: historyId,
       userId: userId,
-      points: parseInt(points),
+      points: points,
       pointsType: 'purchased',
       action: 'purchase',
-      description: `购买积分套餐: ${product.name} ($${product.price})`,
+      description: `购买积分套餐: ${productConfig.name} (${product?.currency || 'USD'} ${(order?.amount || 0) / 100})`,
       createdAt: new Date(),
     })
 
-    // 保存支付记录（使用 stripePayments 表，但标记为 creem 提供商）
+    console.log('✅ 积分历史记录成功:', historyId)
+
+    // 保存支付记录
+    const paymentId = nanoid()
     await db.insert(stripePayments).values({
-      id: nanoid(),
+      id: paymentId,
       userId: userId,
-      stripeCustomerId: 'creem_customer', // Creem 没有 customer ID，使用占位符
-      checkoutSessionId: checkoutSessionId,
+      stripeCustomerId: customer?.id || 'creem_customer',
+      checkoutSessionId: checkoutId,
       paymentStatus: 'succeeded',
       paymentType: 'points_purchase',
-      amount: product.price * 100, // 转换为分
-      currency: 'usd',
-      productName: product.name,
-      productDescription: product.description,
-      pointsAmount: parseInt(points),
+      amount: order?.amount || productConfig.price * 100,
+      currency: order?.currency?.toLowerCase() || 'usd',
+      productName: product?.name || productConfig.name,
+      productDescription: product?.description || productConfig.description,
+      pointsAmount: points,
       pointsType: 'purchased',
       metadata: JSON.stringify({
-        productId: productId,
         provider: 'creem',
         requestId: requestId,
-        checkoutSessionId: checkoutSessionId,
+        checkoutId: checkoutId,
+        orderId: order?.id,
+        customerId: customer?.id,
+        subscriptionId: subscription?.id,
+        productId: product?.id,
+        originalMetadata: metadata,
       }),
       webhookEventId: event.id,
       createdAt: new Date(),
       updatedAt: new Date(),
     })
 
-    console.log(`Successfully added ${points} points to user ${userId}`)
+    console.log('✅ 支付记录保存成功:', paymentId)
+    console.log(`🎉 成功为用户 ${userId} 增加 ${points} 积分`)
 
   } catch (error) {
-    console.error('Error handling payment success:', error)
+    console.error('❌ 处理结账完成事件失败:', error)
+    console.error('错误堆栈:', error instanceof Error ? error.stack : error)
     throw error
   }
 }
 
 /**
- * 处理支付失败事件
+ * 处理订阅支付事件
+ * 用于订阅的续费支付
  */
-async function handlePaymentFailed(event: any) {
+async function handleSubscriptionPaid(event: any) {
+  console.log('--- 处理订阅支付事件 ---')
+  
   try {
-    const metadata = event.data?.metadata || event.metadata || {}
-    const { userId, requestId, points, productId } = metadata
-
-    console.log('Payment failed for user:', userId, 'requestId:', requestId)
-
-    // 如果有用户ID和产品信息，记录失败的支付
-    if (userId && points) {
-      const product = getCreemProductByPoints(parseInt(points))
-      const checkoutSessionId = event.data?.id || event.id
-      
-      // 确定失败原因
-      const eventType = event.type || event.event_type
-      let paymentStatus = 'failed'
-      if (eventType === 'checkout.expired' || eventType === 'payment.expired') {
-        paymentStatus = 'cancelled'
-      } else if (eventType === 'payment.cancelled') {
-        paymentStatus = 'cancelled'
-      }
-
-      // 保存失败的支付记录
-      await db.insert(stripePayments).values({
-        id: nanoid(),
-        userId: userId,
-        stripeCustomerId: 'creem_customer',
-        checkoutSessionId: checkoutSessionId,
-        paymentStatus: paymentStatus,
-        paymentType: 'points_purchase',
-        amount: product ? product.price * 100 : 0,
-        currency: 'usd',
-        productName: product?.name || 'Unknown Product',
-        productDescription: product?.description || '',
-        pointsAmount: parseInt(points),
-        pointsType: 'purchased',
-        metadata: JSON.stringify({
-          productId: productId,
-          provider: 'creem',
-          requestId: requestId,
-          checkoutSessionId: checkoutSessionId,
-          failureReason: eventType,
-        }),
-        webhookEventId: event.id,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      })
-
-      console.log(`Payment ${paymentStatus} recorded for user ${userId}`)
+    const subscription = event.object
+    if (!subscription) {
+      console.error('❌ 缺少 subscription 对象')
+      return
     }
 
-    // 可以在这里发送失败通知邮件等
-    // TODO: 根据需要实现失败通知逻辑
+    const metadata = subscription.metadata || {}
+    const userId = metadata.userId || metadata.user_id || metadata.internal_customer_id
+
+    console.log('订阅支付:', {
+      subscriptionId: subscription.id,
+      userId,
+      status: subscription.status,
+      lastTransactionDate: subscription.last_transaction_date
+    })
+
+    // 如果是订阅续费，可以在这里处理赠送积分等逻辑
+    // 根据您的业务需求实现
 
   } catch (error) {
-    console.error('Error handling payment failure:', error)
-    throw error
+    console.error('❌ 处理订阅支付事件失败:', error)
   }
 }
 
-// 允许Creem webhook请求不受CORS限制
+/**
+ * 处理订阅取消事件
+ */
+async function handleSubscriptionCanceled(event: any) {
+  console.log('--- 处理订阅取消事件 ---')
+  
+  try {
+    const subscription = event.object
+    if (!subscription) {
+      console.error('❌ 缺少 subscription 对象')
+      return
+    }
+
+    const metadata = subscription.metadata || {}
+    const userId = metadata.userId || metadata.user_id || metadata.internal_customer_id
+
+    console.log('订阅已取消:', {
+      subscriptionId: subscription.id,
+      userId,
+      canceledAt: subscription.canceled_at
+    })
+
+    // 根据需要处理订阅取消逻辑
+
+  } catch (error) {
+    console.error('❌ 处理订阅取消事件失败:', error)
+  }
+}
+
+/**
+ * 处理订阅过期事件
+ */
+async function handleSubscriptionExpired(event: any) {
+  console.log('--- 处理订阅过期事件 ---')
+  
+  try {
+    const subscription = event.object
+    if (!subscription) {
+      console.error('❌ 缺少 subscription 对象')
+      return
+    }
+
+    const metadata = subscription.metadata || {}
+    const userId = metadata.userId || metadata.user_id || metadata.internal_customer_id
+
+    console.log('订阅已过期:', {
+      subscriptionId: subscription.id,
+      userId,
+      status: subscription.status
+    })
+
+    // 根据需要处理订阅过期逻辑
+
+  } catch (error) {
+    console.error('❌ 处理订阅过期事件失败:', error)
+  }
+}
+
+/**
+ * 处理退款创建事件
+ */
+async function handleRefundCreated(event: any) {
+  console.log('--- 处理退款创建事件 ---')
+  
+  try {
+    const refund = event.object
+    if (!refund) {
+      console.error('❌ 缺少 refund 对象')
+      return
+    }
+
+    console.log('退款已创建:', {
+      refundId: refund.id,
+      amount: refund.refund_amount,
+      currency: refund.refund_currency,
+      status: refund.status,
+      reason: refund.reason
+    })
+
+    // 根据需要处理退款逻辑
+    // 例如：扣除用户积分等
+
+  } catch (error) {
+    console.error('❌ 处理退款创建事件失败:', error)
+  }
+}
+
+// 允许 Creem webhook 请求不受 CORS 限制
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'

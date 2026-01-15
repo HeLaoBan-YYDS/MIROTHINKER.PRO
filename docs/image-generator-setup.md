@@ -109,20 +109,42 @@ drizzle/
 
 ### 2. 查询任务状态
 
-**端点**: `GET /api/generate-image/status?task_id={task_id}`
+**端点**: `GET /api/generate-image/status/{task_id}?language=zh`
+
+**查询参数**:
+- `language` (可选): 返回内容的语言，支持 zh/en/ko/ja，默认为 en
 
 **响应**:
 ```json
 {
-  "success": true,
+  "code": 200,
   "data": {
-    "task_id": "task_01K8SGYNNNVBQTXNR4MM964S7K",
+    "id": "task_01K8SGYNNNVBQTXNR4MM964S7K",
     "status": "completed",
-    "imageUrls": [
-      "https://cdn.apimart.ai/generated/image1.png"
-    ],
-    "errorMessage": null,
-    "progress": 100
+    "progress": 100,
+    "result": {
+      "images": [
+        {
+          "url": ["https://cdn.apimart.ai/generated/image1.png"],
+          "expires_at": 1763174708
+        }
+      ]
+    },
+    "created": 1763088289,
+    "completed": 1763088308,
+    "estimated_time": 60,
+    "actual_time": 19
+  }
+}
+```
+
+**错误响应**:
+```json
+{
+  "error": {
+    "code": 401,
+    "message": "身份验证失败，请先登录",
+    "type": "authentication_error"
   }
 }
 ```
@@ -279,7 +301,7 @@ curl -X POST http://localhost:3000/api/generate-image \
   }'
 
 # 查询任务状态
-curl http://localhost:3000/api/generate-image/status?task_id=TASK_ID \
+curl http://localhost:3000/api/generate-image/status/TASK_ID?language=zh \
   -H "Cookie: next-auth.session-token=YOUR_SESSION_TOKEN"
 ```
 

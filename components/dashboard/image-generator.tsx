@@ -167,24 +167,35 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
 
     const poll = async () => {
       try {
-        const response = await fetch(`/api/generate-image/status?task_id=${taskIdToCheck}`)
+        const response = await fetch(`/api/generate-image/status/${taskIdToCheck}`)
         const data = await response.json()
 
-        if (!response.ok || !data.success) {
-          throw new Error(data.error || '查询失败')
+        // 处理新的 API 响应格式
+        if (!response.ok) {
+          // 错误响应格式: { error: { code, message, type } }
+          const errorMessage = data.error?.message || '查询失败'
+          throw new Error(errorMessage)
+        }
+
+        // 成功响应格式: { code: 200, data: { ... } }
+        if (data.code !== 200) {
+          throw new Error('查询失败')
         }
 
         setTaskStatus(data.data.status)
 
         if (data.data.status === 'completed') {
-          setGeneratedImages(data.data.imageUrls || [])
+          // 从 result.images 数组中提取所有图片 URL
+          const imageUrls = data.data.result?.images?.flatMap((img: any) => img.url) || []
+          setGeneratedImages(imageUrls)
           toast.success('图片生成完成！')
           setIsPolling(false)
           return
         }
 
         if (data.data.status === 'failed') {
-          setErrorMessage(data.data.errorMessage || '生成失败')
+          const errorMessage = data.data.error?.message || '生成失败'
+          setErrorMessage(errorMessage)
           toast.error('图片生成失败')
           setIsPolling(false)
           return

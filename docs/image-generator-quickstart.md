@@ -143,8 +143,32 @@ curl -X POST http://localhost:3000/api/generate-image \
 ```bash
 TASK_ID="task_xxxxx"  # 从上一步响应中获取
 
-curl "http://localhost:3000/api/generate-image/status?task_id=$TASK_ID" \
+curl "http://localhost:3000/api/generate-image/status/$TASK_ID?language=zh" \
   -H "Cookie: next-auth.session-token=$SESSION_TOKEN"
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "data": {
+    "id": "task_01K8SGYNNNVBQTXNR4MM964S7K",
+    "status": "completed",
+    "progress": 100,
+    "result": {
+      "images": [
+        {
+          "url": ["https://cdn.apimart.ai/generated/image1.png"],
+          "expires_at": 1763174708
+        }
+      ]
+    },
+    "created": 1763088289,
+    "completed": 1763088308,
+    "estimated_time": 60,
+    "actual_time": 19
+  }
+}
 ```
 
 ## 9. 故障排查

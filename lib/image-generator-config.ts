@@ -2,7 +2,7 @@
 export const IMAGE_GENERATOR_CONFIG = {
   // API配置
   API_URL: 'https://api.apimart.ai/v1/images/generations',
-  API_STATUS_URL: 'https://api.apimart.ai/v1/images/generations',
+  API_STATUS_URL: 'https://api.apimart.ai/v1/tasks',
   
   // 模型配置
   MODEL: 'doubao-seedance-4-5',

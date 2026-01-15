@@ -120,4 +120,25 @@ export const stripePayments = pgTable('stripePayments', {
   webhookEventId: text('webhookEventId'), // Stripe webhook事件ID
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow(),
+})
+
+// 图像生成任务表
+export const imageGenerationTasks = pgTable('imageGenerationTasks', {
+  id: text('id').primaryKey(),
+  userId: text('userId')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  taskId: text('taskId').notNull().unique(), // API返回的task_id
+  prompt: text('prompt').notNull(), // 用户输入的提示词
+  model: text('model').notNull().default('doubao-seedance-4-5'),
+  size: text('size').notNull().default('1:1'), // 宽高比
+  resolution: text('resolution').notNull().default('2K'), // 分辨率
+  imageCount: integer('imageCount').notNull().default(1), // 生成图片数量
+  costPoints: integer('costPoints').notNull(), // 本次消耗的积分
+  status: text('status').notNull().default('submitted'), // submitted, processing, completed, failed
+  imageUrls: text('imageUrls'), // JSON数组，存储生成的图片URLs
+  errorMessage: text('errorMessage'), // 失败原因
+  refunded: boolean('refunded').default(false), // 是否已退还积分
+  createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
+  completedAt: timestamp('completedAt', { mode: 'date' }),
 }) 

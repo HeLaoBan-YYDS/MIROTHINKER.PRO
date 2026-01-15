@@ -17,11 +17,28 @@ import {
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { toast } from 'sonner'
-import { Loader2, Image as ImageIcon, Download, AlertCircle, Coins } from 'lucide-react'
+import { Loader2, Image as ImageIcon, Download, AlertCircle, Coins, Clock, CheckCircle, XCircle } from 'lucide-react'
 import { IMAGE_GENERATOR_CONFIG } from '@/lib/image-generator-config'
 
 interface ImageGeneratorProps {
   initialPoints?: number
+}
+
+interface HistoryTask {
+  id: string
+  taskId: string
+  prompt: string
+  model: string
+  size: string
+  resolution: string
+  imageCount: number
+  costPoints: number
+  status: string
+  imageUrls: string[]
+  errorMessage: string | null
+  refunded: boolean
+  createdAt: string
+  completedAt: string | null
 }
 
 export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
@@ -40,16 +57,24 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
   // 任务状态
   const [taskId, setTaskId] = useState<string | null>(null)
   const [taskStatus, setTaskStatus] = useState<string>('')
+  const [taskProgress, setTaskProgress] = useState<number>(0)
+  const [estimatedTime, setEstimatedTime] = useState<number>(0)
+  const [elapsedTime, setElapsedTime] = useState<number>(0)
   const [generatedImages, setGeneratedImages] = useState<string[]>([])
   const [errorMessage, setErrorMessage] = useState<string>('')
+  
+  // 历史记录状态
+  const [historyTasks, setHistoryTasks] = useState<HistoryTask[]>([])
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false)
 
   // 计算预计消耗的积分
   const estimatedCost = IMAGE_GENERATOR_CONFIG.PRICING[resolution as keyof typeof IMAGE_GENERATOR_CONFIG.PRICING] * imageCount
 
-  // 获取用户积分
+  // 获取用户积分和历史记录
   useEffect(() => {
     if (session?.user?.email) {
       fetchUserPoints()
+      fetchHistory()
     }
   }, [session])
 
@@ -62,6 +87,21 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
       }
     } catch (error) {
       console.error('获取用户积分失败:', error)
+    }
+  }
+
+  const fetchHistory = async () => {
+    setIsLoadingHistory(true)
+    try {
+      const response = await fetch('/api/generate-image/history?limit=10')
+      const data = await response.json()
+      if (data.success) {
+        setHistoryTasks(data.data.tasks || [])
+      }
+    } catch (error) {
+      console.error('获取历史记录失败:', error)
+    } finally {
+      setIsLoadingHistory(false)
     }
   }
 
@@ -118,6 +158,9 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
     setErrorMessage('')
     setGeneratedImages([])
     setTaskStatus('')
+    setTaskProgress(0)
+    setEstimatedTime(0)
+    setElapsedTime(0)
 
     try {
       const response = await fetch('/api/generate-image', {
@@ -147,6 +190,9 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
       setTaskId(data.data.task_id)
       setTaskStatus(data.data.status)
       setUserPoints(data.data.remainingPoints)
+      
+      // 刷新历史记录，显示新提交的任务
+      fetchHistory()
       
       // 开始轮询任务状态
       startPolling(data.data.task_id)
@@ -183,6 +229,16 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
         }
 
         setTaskStatus(data.data.status)
+        setTaskProgress(data.data.progress || 0)
+
+        // 计算时间信息
+        if (data.data.created) {
+          const elapsed = Math.floor(Date.now() / 1000) - data.data.created
+          setElapsedTime(elapsed)
+        }
+        if (data.data.estimated_time) {
+          setEstimatedTime(data.data.estimated_time)
+        }
 
         if (data.data.status === 'completed') {
           // 从 result.images 数组中提取所有图片 URL
@@ -190,6 +246,8 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
           setGeneratedImages(imageUrls)
           toast.success('图片生成完成！')
           setIsPolling(false)
+          // 刷新历史记录
+          fetchHistory()
           return
         }
 
@@ -198,6 +256,8 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
           setErrorMessage(errorMessage)
           toast.error('图片生成失败')
           setIsPolling(false)
+          // 刷新历史记录
+          fetchHistory()
           return
         }
 
@@ -404,19 +464,52 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
             )}
           </Button>
 
-          {/* 任务状态 */}
+          {/* 任务状态和进度 */}
           {taskStatus && (
-            <div className="space-y-2">
+            <div className="space-y-3">
+              {/* 状态标题 */}
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">任务状态:</span>
                 <span className="font-medium">
                   {taskStatus === 'submitted' && '已提交'}
-                  {taskStatus === 'processing' && '处理中'}
+                  {taskStatus === 'pending' && '排队中'}
+                  {taskStatus === 'processing' && '生成中'}
                   {taskStatus === 'completed' && '已完成'}
                   {taskStatus === 'failed' && '失败'}
                 </span>
               </div>
-              {isPolling && <Progress value={undefined} className="w-full" />}
+              
+              {/* 进度条和时间信息 */}
+              {isPolling && (
+                <>
+                  <div className="space-y-2">
+                    <Progress value={taskProgress} className="w-full" />
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>{taskProgress}% 完成</span>
+                      {estimatedTime > 0 && (
+                        <span>
+                          {elapsedTime < estimatedTime ? (
+                            <>预计剩余: {Math.max(0, estimatedTime - elapsedTime)}秒</>
+                          ) : (
+                            <>已用时: {elapsedTime}秒</>
+                          )}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* 状态提示 */}
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span>
+                      {(taskStatus === 'submitted' || taskStatus === 'pending') && '正在排队，请稍候...'}
+                      {taskStatus === 'processing' && taskProgress < 30 && '正在初始化生成环境...'}
+                      {taskStatus === 'processing' && taskProgress >= 30 && taskProgress < 70 && '正在生成图片，这可能需要一些时间...'}
+                      {taskStatus === 'processing' && taskProgress >= 70 && '即将完成，正在优化图片质量...'}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           )}
 
@@ -463,6 +556,104 @@ export function ImageGenerator({ initialPoints = 0 }: ImageGeneratorProps) {
           </CardContent>
         </Card>
       )}
+
+      {/* 历史记录 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>生成历史</CardTitle>
+          <CardDescription>查看您之前生成的所有图片</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {isLoadingHistory ? (
+            <div className="flex justify-center items-center py-8">
+              <Loader2 className="h-8 w-8 animate-spin" />
+            </div>
+          ) : historyTasks.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <ImageIcon className="h-12 w-12 mx-auto mb-2 opacity-50" />
+              <p>暂无生成记录</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {historyTasks.map((task) => (
+                <div key={task.id} className="border rounded-lg p-4 space-y-3">
+                  {/* 任务信息头部 */}
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 space-y-1">
+                      <p className="text-sm font-medium line-clamp-2">{task.prompt}</p>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {new Date(task.createdAt).toLocaleString('zh-CN')}
+                        </span>
+                        <span>{task.resolution} • {task.size} • {task.imageCount}张</span>
+                        <span className="flex items-center gap-1">
+                          <Coins className="h-3 w-3" />
+                          {task.costPoints} 积分
+                        </span>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      {task.status === 'completed' && (
+                        <span className="flex items-center gap-1 text-xs text-green-600 bg-green-50 px-2 py-1 rounded">
+                          <CheckCircle className="h-3 w-3" />
+                          已完成
+                        </span>
+                      )}
+                      {task.status === 'failed' && (
+                        <span className="flex items-center gap-1 text-xs text-red-600 bg-red-50 px-2 py-1 rounded">
+                          <XCircle className="h-3 w-3" />
+                          失败
+                        </span>
+                      )}
+                      {(task.status === 'processing' || task.status === 'submitted' || task.status === 'pending') && (
+                        <span className="flex items-center gap-1 text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                          生成中
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* 图片展示 */}
+                  {task.status === 'completed' && task.imageUrls.length > 0 && (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                      {task.imageUrls.map((url, index) => (
+                        <div key={index} className="space-y-1">
+                          <div className="relative aspect-square overflow-hidden rounded border">
+                            <img
+                              src={url}
+                              alt={`${task.prompt} - ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <Button
+                            onClick={() => downloadImage(url, index)}
+                            variant="outline"
+                            size="sm"
+                            className="w-full text-xs"
+                          >
+                            <Download className="mr-1 h-3 w-3" />
+                            下载
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* 错误信息 */}
+                  {task.status === 'failed' && task.errorMessage && (
+                    <Alert variant="destructive">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription className="text-xs">{task.errorMessage}</AlertDescription>
+                    </Alert>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   )
 }

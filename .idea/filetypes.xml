@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+    <component name="FileTypeManager" version="27">
+        <ignoreFiles list="CVS;SCCS;RCS;rcs;.DS_Store;.svn;.pyc;.pyo;*.pyc;*.pyo;*.so;*.swp;*.swo;*~;.nfs*;.idea;.idea/*;.git;.git/*;.hg;.hg/*;.bzr;.bzr/*" />
+        <extensionMap>
+            <mapping pattern="*.env.*" type="Environment variables" />
+        </extensionMap>
+    </component>
+</project>

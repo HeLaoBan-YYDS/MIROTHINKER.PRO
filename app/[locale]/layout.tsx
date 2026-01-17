@@ -31,8 +31,8 @@ export async function generateMetadata({
     },
     description: t('description'),
     keywords: locale === 'zh'
-      ? 'SaaS模版,出海SaaS,Next.js模版,用户认证,支付系统,多语言支持,SEO优化,现代化SaaS,全球化部署,企业级SaaS'
-      : 'SaaS Template,Global SaaS,Next.js Template,User Authentication,Payment System,Multi-language Support,SEO Optimization,Modern SaaS,Global Deployment,Enterprise SaaS',
+      ? 'translategemma,AI翻译,开源翻译模型,离线翻译,Google DeepMind,多语言翻译,私有化部署,Gemma 3,机器翻译,神经机器翻译'
+      : 'translategemma,AI translation,open source translation,offline translation,Google DeepMind,multi-language translation,private deployment,Gemma 3,machine translation',
     authors: [{ name: 'Get SaaS Team' }],
     creator: 'Get SaaS',
     publisher: 'Get SaaS',
@@ -61,7 +61,7 @@ export async function generateMetadata({
       url: currentUrl,
       title: t('title'),
       description: t('description'),
-      siteName: 'Get SaaS',
+      siteName: 'TranslateGemma',
       images: baseUrl ? [
         {
           url: `${baseUrl}/images/homehaibao.png`,
@@ -95,7 +95,7 @@ export async function generateMetadata({
       yahoo: process.env.YAHOO_VERIFICATION,
     },
     category: 'technology',
-    classification: 'SaaS Template, Web Development, Enterprise Software',
+    classification: 'AI Translation, Machine Translation, Open Source Software, Google DeepMind',
     other: {
       'theme-color': '#00F0FF',
       'apple-mobile-web-app-capable': 'yes',

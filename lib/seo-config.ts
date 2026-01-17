@@ -7,14 +7,14 @@ export const seoConfig = {
   // 默认SEO设置
   defaultSEO: {
     zh: {
-      title: 'Get SaaS - 专为出海设计的现代化SaaS模版',
-      description: 'Get SaaS是专为出海设计的现代化SaaS模版，集成完整的用户认证、支付系统、多语言支持、SEO优化等功能。基于Next.js构建，帮助开发者快速启动SaaS产品。',
-      keywords: 'SaaS模版,出海SaaS,Next.js模版,SaaS启动模版,多语言SaaS,支付集成,用户认证,SEO优化,现代化UI,响应式设计,TypeScript,Tailwind CSS,SaaS开发,快速启动,云原生,企业软件',
+      title: 'TranslateGemma - Google DeepMind 开源AI翻译 | 支持55种语言离线翻译',
+      description: 'TranslateGemma 是 Google DeepMind 2026年1月最新发布的开源翻译模型，支持55种语言、500+语言对，12B版本性能超越27B基线，支持离线使用和私有化部署。',
+      keywords: 'translategemma,AI翻译,开源翻译模型,离线翻译,Google DeepMind,多语言翻译,私有化部署,Gemma 3,机器翻译,神经机器翻译,多模态翻译,拍照翻译',
     },
     en: {
-      title: 'Get SaaS - Modern SaaS Template Designed for Global Markets',
-      description: 'Get SaaS is a modern SaaS template designed for global markets, featuring complete user authentication, payment systems, multi-language support, and SEO optimization. Built with Next.js to help developers launch SaaS products quickly.',
-      keywords: 'SaaS Template,Global SaaS,Next.js Template,SaaS Starter,Multi-language SaaS,Payment Integration,User Authentication,SEO Optimization,Modern UI,Responsive Design,TypeScript,Tailwind CSS,SaaS Development,Quick Launch,Cloud Native,Enterprise Software',
+      title: 'TranslateGemma - Open Source AI Translation by Google DeepMind',
+      description: 'TranslateGemma is Google DeepMind\'s latest open-source translation model released in January 2026, supporting 55 languages, 500+ language pairs, offline usage and private deployment.',
+      keywords: 'translategemma,AI translation,open source translation,offline translation,Google DeepMind,multi-language translation,private deployment,Gemma 3,machine translation,neural machine translation,multimodal translation',
     }
   },
 
@@ -137,16 +137,16 @@ export const seoConfig = {
 
   // 结构化数据设置
   organization: {
-    name: 'Get SaaS',
-    foundingDate: '2025',
-    industry: 'Software Development',
-    numberOfEmployees: '1-10',
+    name: 'TranslateGemma',
+    foundingDate: '2026',
+    industry: 'Artificial Intelligence',
+    numberOfEmployees: 'Google DeepMind',
     contactEmail: 'app@itusi.cn',
     url: 'https://getsaaspro.com',
-    description: 'Modern SaaS template designed for global markets with complete authentication, payment systems, and multi-language support.',
-    keywords: ['SaaS Template', 'Next.js', 'TypeScript', 'Global Markets', 'Multi-language'],
+    description: 'Open-source AI translation model by Google DeepMind supporting 55 languages, 500+ language pairs, offline usage and private deployment.',
+    keywords: ['TranslateGemma', 'AI Translation', 'Open Source', 'Google DeepMind', 'Gemma 3', 'Offline Translation', 'Multi-language', 'Private Deployment'],
     sameAs: [
-      'https://github.com/ItusiAI',
+      'https://github.com/google-deepmind/translategemma',
       'https://twitter.com/zyailive'
     ]
   }

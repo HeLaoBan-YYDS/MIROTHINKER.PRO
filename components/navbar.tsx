@@ -67,14 +67,14 @@ export function Navbar() {
               <div className="relative w-8 h-8 sm:w-10 sm:h-10">
                 <Image
                   src="/logo.png"
-                  alt="Get SaaS Logo"
+                  alt="TranslateGemma Logo"
                   fill
                   className="object-contain"
                   priority
                 />
               </div>
               <span className="text-xl sm:text-2xl font-bold text-primary">
-                Get SaaS
+                TranslateGemma
               </span>
             </Link>
           </div>
@@ -94,17 +94,23 @@ export function Navbar() {
               {t("features")}
             </button>
             <button
-              onClick={() => scrollToSection("pricing")}
+              onClick={() => scrollToSection("demo")}
               className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
             >
-              {t("pricing")}
+              {locale === 'zh' ? '产品演示' : 'Demo'}
             </button>
-            <Link
-              href={getLocalizedPath("/blog")}
+            <button
+              onClick={() => scrollToSection("testimonials")}
               className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
             >
-              {t("blog")}
-            </Link>
+              {locale === 'zh' ? '用户评价' : 'Testimonials'}
+            </button>
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
+            >
+              {locale === 'zh' ? '常见问题' : 'FAQ'}
+            </button>
           </div>
 
           {/* Right side controls */}
@@ -201,20 +207,31 @@ export function Navbar() {
               </button>
               <button
                 onClick={() => {
-                  scrollToSection("pricing")
+                  scrollToSection("demo")
                   setIsMenuOpen(false)
                 }}
                 className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary hover:bg-primary/20 rounded-lg transition-all duration-300"
               >
-                {t("pricing")}
+                {locale === 'zh' ? '产品演示' : 'Demo'}
               </button>
-              <Link
-                href={getLocalizedPath("/blog")}
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => {
+                  scrollToSection("testimonials")
+                  setIsMenuOpen(false)
+                }}
                 className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary hover:bg-primary/20 rounded-lg transition-all duration-300"
               >
-                {t("blog")}
-              </Link>
+                {locale === 'zh' ? '用户评价' : 'Testimonials'}
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection("faq")
+                  setIsMenuOpen(false)
+                }}
+                className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary hover:bg-primary/20 rounded-lg transition-all duration-300"
+              >
+                {locale === 'zh' ? '常见问题' : 'FAQ'}
+              </button>
 
               <div className="border-t border-primary/30 pt-4 space-y-2">
                 {/* Auth Section Mobile */}

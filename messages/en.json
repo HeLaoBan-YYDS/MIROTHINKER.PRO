@@ -717,5 +717,282 @@
       },
       "readMore": "Read More"
     }
+  },
+  "translategemma": {
+    "metadata": {
+      "title": "TranslateGemma - Open Source AI Translation | Google DeepMind",
+      "description": "TranslateGemma is Google DeepMind's latest open-source translation model released in January 2026, supporting 55 languages, 500+ language pairs, offline usage and private deployment.",
+      "keywords": "translategemma, AI translation, open source translation, offline translation, Google DeepMind, multi-language translation, private deployment, Gemma 3, machine translation"
+    },
+    "hero": {
+      "badge": "🚀 Google DeepMind Latest Release - January 2026",
+      "title": "Global Translation, Local Control",
+      "subtitle": "Google DeepMind January 2026 Release | 12B Parameters Outperform 27B Baseline | Support 55 Languages 500+ Language Pairs | Fully Open Source with Private Deployment",
+      "stats": {
+        "languages": "Core Languages",
+        "languagePairs": "Language Pairs",
+        "tokenContext": "Token Context",
+        "openSource": "Open Source"
+      },
+      "cta": {
+        "download": "Free Download",
+        "demo": "Watch Demo"
+      },
+      "trust": {
+        "official": "Google DeepMind Official",
+        "license": "Apache 2.0 License",
+        "offline": "Offline Usage Support",
+        "community": "Global Developer Community"
+      }
+    },
+    "features": {
+      "title": "Why Choose TranslateGemma?",
+      "subtitle": "Next-Generation Open Source AI Translation Solution",
+      "performance": {
+        "title": "Performance Doubled, Cost Halved",
+        "description": "12B parameter version outperforms 27B baseline model with revolutionary 5:1 interleaved attention mechanism, reducing computational resource requirements by 50% while doubling translation speed.",
+        "highlight1": "✅ Computational cost reduced by 50%",
+        "highlight2": "✅ Inference speed increased by 2x",
+        "highlight3": "✅ Lower hardware requirements for same performance",
+        "highlight4": "✅ Long-text processing memory grows nearly linearly"
+      },
+      "languages": {
+        "title": "Global Languages, Precise Coverage",
+        "description": "Supporting 55 core languages and nearly 500 language pairs, from mainstream to low-resource languages. With 256k super-large vocabulary design, non-English language encoding efficiency increases 8x, low-resource language translation accuracy improves up to 30%.",
+        "highlight1": "✅ Mainstream languages: Chinese, English, Japanese, Korean, French, German, Spanish, Russian, etc.",
+        "highlight2": "✅ Small languages: Icelandic, Welsh, Swahili, etc.",
+        "highlight3": "✅ Bidirectional translation: 500+ language pairs freely combined",
+        "highlight4": "✅ Terminology adaptation: Precise conversion of idioms, slang, and professional terms"
+      },
+      "multimodal": {
+        "title": "Photo Translation, No OCR Required",
+        "description": "Multimodal translation capability for unified image-text processing. TranslateGemma can directly translate text in images without cumbersome OCR preprocessing, whether it's road signs, menus, scanned documents or product packaging.",
+        "highlight1": "✅ Travel: Road signs, traffic signs, restaurant menus",
+        "highlight2": "✅ Office: Scanned documents, paper contracts, business cards",
+        "highlight3": "✅ Shopping: Product descriptions, packaging labels",
+        "highlight4": "✅ Learning: Textbooks, notes, reference materials"
+      },
+      "deployment": {
+        "title": "Flexible Deployment Across All Scenarios",
+        "description": "Three versions from mobile to cloud, meeting all needs: 4B (mobile, ≤2GB), 12B (notebook, ≤18GB), 27B (cloud, enterprise-grade performance).",
+        "highlight1": "📱 4B Mobile Version: Smartphones, tablets, offline translation",
+        "highlight2": "💻 12B Notebook Version: Personal computers, high-precision translation",
+        "highlight3": "☁️ 27B Cloud Version: Servers, distributed processing",
+        "highlight4": "⚡ Flexible quantization: Memory reduced by 30-50% with <3% performance loss"
+      },
+      "security": {
+        "title": "Data Security, Privacy Protected",
+        "description": "Supporting fully offline use, all translation data stored locally, Google collects no information. Complies with GDPR, CCPA and other international privacy regulations, the best choice for handling sensitive documents (contracts, medical records, financial statements).",
+        "highlight1": "✅ Fully offline operation, no network required",
+        "highlight2": "✅ Local data storage, zero cloud transmission",
+        "highlight3": "✅ Supports data encryption and access control",
+        "highlight4": "✅ Complies with GDPR, HIPAA and other compliance requirements"
+      },
+      "opensource": {
+        "title": "Open Source Ecosystem, Free Customization",
+        "description": "Based on Apache 2.0 open source license, developers can freely use, modify and distribute. Provides complete API interfaces and SDKs, supporting multiple programming languages like Python, Java, JavaScript, easily integrated into existing products.",
+        "highlight1": "✅ Complete API documentation and code examples",
+        "highlight2": "✅ Python/Java/JavaScript SDK",
+        "highlight3": "✅ Docker one-click deployment",
+        "highlight4": "✅ Active developer community support"
+      }
+    },
+    "demo": {
+      "title": "See How TranslateGemma Works",
+      "subtitle": "Real scenarios, real effects",
+      "videoPlaceholder": "Video Demo",
+      "watchOnYoutube": "Watch on YouTube",
+      "mobile": {
+        "title": "Mobile Offline Photo Translation",
+        "description": "Traveler checking Japanese menu in restaurant",
+        "highlight1": "✈️ Fully offline environment (airplane mode enabled)",
+        "highlight2": "📸 Open camera to photograph Japanese menu",
+        "highlight3": "⚡ Complete recognition and translation in 1 second",
+        "highlight4": "📖 Display Chinese translation including dish descriptions"
+      },
+      "desktop": {
+        "title": "Desktop Long Document Batch Translation",
+        "description": "Enterprise user translating 30,000-word product manual",
+        "highlight1": "📄 Upload 30,000-word Chinese Word document",
+        "highlight2": "🌐 Select target languages (English, Japanese, German)",
+        "highlight3": "⏱️ Complete 3-language translation in 5 minutes",
+        "highlight4": "📥 Export as Word/PDF format, preserving original layout"
+      },
+      "developer": {
+        "title": "Developer API Quick Integration",
+        "description": "Adding multi-language product descriptions to e-commerce website",
+        "highlight1": "🔌 Install Python SDK (pip install translategemma)",
+        "highlight2": "💻 Complete API call in 10 lines of code",
+        "highlight3": "🚀 Batch translate 100 product descriptions",
+        "highlight4": "✅ Auto quality check and return translation results"
+      },
+      "official": {
+        "title": "Official Core Feature Overview",
+        "description": "Google Developer Conference complete demonstration",
+        "highlight1": "📱 Mobile real-time earphone translation (preserving tone and intonation)",
+        "highlight2": "💻 Desktop 128k Token long document translation",
+        "highlight3": "📸 Multimodal image translation (signs, menus, documents)",
+        "highlight4": "🎯 Enterprise-grade private deployment solution"
+      }
+    },
+    "testimonials": {
+      "title": "Trusted by Users Worldwide",
+      "subtitle": "Join thousands of users experiencing the power of TranslateGemma",
+      "stats": {
+        "languages": "Core Languages",
+        "efficiency": "Cost Reduction",
+        "downloads": "Downloads",
+        "githubStars": "GitHub Stars"
+      },
+      "user1": {
+        "name": "Zhang Xiao",
+        "title": "Travel Blogger",
+        "content": "As someone who travels abroad frequently, TranslateGemma's offline translation feature is incredibly useful! When traveling in Iceland last year, many places had no network signal, but I could still use my phone to photograph and translate road signs and menus. The translation accuracy is very high, even Icelandic, a small language, can be accurately recognized. 5 stars!"
+      },
+      "user2": {
+        "name": "Li Ming",
+        "title": "Cross-border E-commerce CTO",
+        "content": "Our company is a cross-border e-commerce business that needs to translate a large number of product descriptions into 30+ languages every month. Previously using translation APIs, monthly costs exceeded $5000. After deploying TranslateGemma, costs dropped to $1500, and translation quality is better with more accurate professional terminology. Private deployment also makes our product strategy more secure."
+      },
+      "user3": {
+        "name": "Wang Bo",
+        "title": "PhD Student in Computer Science",
+        "content": "As a PhD student, I need to read a large amount of English literature every week. TranslateGemma's long document translation feature allows me to quickly understand the core content of papers, especially with very accurate professional terminology translation. 128k Token support means I can translate entire papers at once without manual splitting. My literature reading efficiency has improved by at least 5 times!"
+      },
+      "user4": {
+        "name": "Director Liu",
+        "title": "International Department Director, Major Hospital",
+        "content": "Our hospital has a large number of international patients requiring medical record and prescription translation. TranslateGemma's private deployment perfectly solves our data security concerns. Medical terminology translation is accurate, supports custom medical vocabulary, and fully complies with HIPAA compliance requirements. Already implemented hospital-wide."
+      },
+      "user5": {
+        "name": "Alex Chen",
+        "title": "Independent Developer",
+        "content": "As an independent developer, I need to add multi-language support to my SaaS product. TranslateGemma's API is very simple to use, completed integration in 10 minutes. And it's completely open source, I can customize as needed. Most importantly, the monthly 1 million character free quota makes my startup costs almost zero!"
+      },
+      "authority": {
+        "title": "Authoritative Recognition",
+        "githubStars": "GitHub Stars: 25,000+ (released just 2 weeks)",
+        "downloads": "Hugging Face Downloads: 500,000+",
+        "rating": "Developer Community Rating: 4.8/5.0"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about TranslateGemma",
+      "installation": {
+        "title": "Installation & Versions",
+        "q1": {
+          "question": "When will the iOS version be officially launched?",
+          "answer": "Currently iOS only supports obtaining the test version through TestFlight. The official plans to promote the test version to App Store in 2026, specific time subject to Google AI official website announcement.\n\nTemporary alternatives:\n- iOS users can visit Google Translate web version through browser, indirectly using TranslateGemma's core translation features\n- Or use desktop version on Mac devices"
+        },
+        "q2": {
+          "question": "Does mobile installation require root or jailbreak?",
+          "answer": "No need.\n\n- Android version: Download APK file directly, allow 'install from unknown sources' in settings to complete installation\n- iOS test version: Install through TestFlight, no jailbreak required\n\nInstallation process is identical to regular apps, won't affect device warranty and security."
+        },
+        "q3": {
+          "question": "Can different model versions be installed simultaneously?",
+          "answer": "Yes.\n\n- Mobile and desktop: 4B mobile version and 12B desktop version can be installed independently without conflict\n- Developer deployment: Different parameter versions (4B/12B/27B) need to store weight files separately\n\nRecommended approach: Use different directories for differentiation, specify corresponding path when loading."
+        },
+        "q4": {
+          "question": "How to resume after download interruption?",
+          "answer": "Supports resume from breakpoint.\n\nMobile:\n- Re-enter download page, system automatically recognizes downloaded parts\n- Supports resume from breakpoint, no need to re-download\n\nDesktop / Developer:\n- Python package installation: pip install supports auto-resume\n- Docker deployment: Re-execute docker pull command\n- Manual download: Use wget -c or curl -C - for resume support"
+        }
+      },
+      "usage": {
+        "title": "Feature Usage",
+        "q1": {
+          "question": "What image formats are supported for photo translation?",
+          "answer": "Supports common image formats.\n\nSupported formats:\n- ✅ JPG / JPEG\n- ✅ PNG\n- ✅ PDF scanned documents\n- ✅ WebP\n- ✅ BMP\n\nNot currently supported:\n- ❌ GIF animations\n- ❌ Video files (MP4/AVI etc.)\n- ❌ Dynamic content"
+        },
+        "q2": {
+          "question": "Does offline translation support all 55 core languages?",
+          "answer": "Yes, but requires downloading language packs in advance.\n\nText translation:\n- Supports all 55 languages offline\n- Need to download corresponding language pack in advance (Settings → Offline languages)\n- Single language pack size ≤500MB\n\nVoice translation:\n- Offline support limited to 12 mainstream languages: Chinese, English, Japanese, Korean, French, German, Spanish, Russian, Arabic, Portuguese, Italian, Dutch\n- Low-resource languages offline only support text translation"
+        },
+        "q3": {
+          "question": "Can idioms, slang and other complex expressions be accurately translated?",
+          "answer": "Yes. TranslateGemma performs 'context proofreading' through Gemini engine, avoiding word-for-word literal translation.\n\nReal examples:\n- English: 'stealing my thunder' → Chinese '抢风头' (not 'stealing my thunder')\n- English: 'piece of cake' → Chinese '小菜一碟' (not 'a piece of cake')\n- Chinese '加油' → 'Come on' / 'Keep up the good work' (context-dependent)\n- Chinese '画蛇添足' → 'Gild the lily'"
+        },
+        "q4": {
+          "question": "What is the upper limit for long text translation?",
+          "answer": "Depends on the model version used.\n\n- 4B Mobile: 32k Token (approx 8,000 words), recommended single processing ≤5,000 words\n- 12B Desktop: 128k Token (approx 30,000 words), recommended ≤30,000 words\n- 27B Cloud: 128k Token (approx 30,000 words), supports whole document processing\n\nFor ultra-long documents, 12B version processing 50,000+ words recommended to split paragraphs. Supports Word/PDF format direct translation, preserving original formatting, images, tables."
+        },
+        "q5": {
+          "question": "Does it support real-time earphone translation?",
+          "answer": "Yes.\n\nFeature characteristics:\n- ✅ Supports 70+ languages real-time translation\n- ✅ Preserves speaker tone and intonation\n- ✅ Compatible with any earphones (no dedicated device required)\n- ✅ Bidirectional translation\n\nCurrent status:\n- Android version: Test version launched\n- iOS version: Planned for 2026 rollout"
+        }
+      },
+      "technical": {
+        "title": "Technical Deployment",
+        "q1": {
+          "question": "Is Python 3.9 and below compatible?",
+          "answer": "Not compatible.\n\nMinimum requirements:\n- Python 3.10+\n- Recommended Python 3.11 or 3.12\n\nReason: TranslateGemma depends on underlying libraries (like transformers, torch) that require Python 3.10+ features."
+        },
+        "q2": {
+          "question": "How much memory is required for Docker deployment?",
+          "answer": "Memory requirements depend on model version.\n\nMinimum configuration:\n- 4B: RAM + VRAM total ≥6 GB, recommended 8 GB\n- 12B: RAM + VRAM total ≥18 GB, recommended 24 GB\n- 27B: RAM + VRAM total ≥54 GB, recommended 64 GB+\n\nPort conflict resolution: If port 8080 is occupied, replace port when starting: docker run -p 8081:8080 translategemma:12b"
+        },
+        "q3": {
+          "question": "What hardware configuration is needed for model fine-tuning?",
+          "answer": "Depends on fine-tuning scale and data volume.\n\nLow-resource language fine-tuning (≥500 sentence pairs):\n- 12B version: RTX 4090 / M3 Max GPU\n- 27B version: Single H100 GPU\n\nEnterprise-level custom fine-tuning: Recommend using distributed GPU deployment (2-4 A100/H100 cards), improving training efficiency and shortening fine-tuning cycle."
+        },
+        "q4": {
+          "question": "How to resolve 'model loading VRAM overflow' issue?",
+          "answer": "Use quantization or optimize loading method.\n\nSolution 1: INT8 quantization (recommended)\n- Memory usage from 24GB reduced to 12GB\n- Speed increased by 30%\n- Performance loss <3%\n\nSolution 2: FP16 half precision\n- Memory usage reduced by 50%\n- Performance loss <1%\n\nSolution 3: Reduce concurrency\n- Avoid processing multiple long texts simultaneously\n- Set batch_size=1\n- Close other programs occupying GPU"
+        },
+        "q5": {
+          "question": "What programming languages support API calls?",
+          "answer": "Native support for Python, Java, JavaScript; other languages through HTTP API.\n\nPython (recommended), JavaScript/TypeScript, Java natively supported.\n\nOther languages (through HTTP API): Start Docker container to provide HTTP API, use curl call (applicable to Go/C#/PHP/Ruby etc.)"
+        }
+      },
+      "commercial": {
+        "title": "Commercial & Permissions",
+        "q1": {
+          "question": "Is non-profit use completely free?",
+          "answer": "Yes, completely free with no restrictions.\n\nNon-profit scenarios include:\n- ✅ Personal learning, research\n- ✅ Public welfare projects, charitable organizations\n- ✅ Educational institution teaching use\n- ✅ Open source project development\n\nNo need to sign additional agreements, download and use directly."
+        },
+        "q2": {
+          "question": "What are the charging rules for commercial use?",
+          "answer": "Free quota + pay-as-you-go.\n\nFree quota:\n- Monthly translation volume ≤1 million characters (approx 500,000 Chinese characters) free\n\nExcess charges:\n- Excess portion charged at $0.001/character\n- Unified settlement at end of month\n\nBilling examples:\n- Monthly translation 500,000 characters → $0\n- Monthly translation 2 million characters → (2M - 1M) × $0.001 = $1000"
+        },
+        "q3": {
+          "question": "Is there an additional charge for private deployment?",
+          "answer": "Private deployment itself has no additional charge.\n\nExplanation:\n- Private deployment belongs to deployment method, no additional charge\n- But commercial use needs to follow billing rules (free quota still applies)\n- Enterprise custom version can obtain exclusive deployment architecture design service (included in package)"
+        },
+        "q4": {
+          "question": "Can TranslateGemma be integrated into own products?",
+          "answer": "Yes.\n\nRequirements:\n- ✅ Open source license allows secondary development and product integration\n- ✅ Need to note 'Built on TranslateGemma' in product description\n- ✅ Follow Apache 2.0 open source license copyright requirements\n\nCommercial products: If integrated into commercial products, need to follow commercial use billing rules"
+        }
+      },
+      "security": {
+        "title": "Data Security",
+        "q1": {
+          "question": "Will translation data be collected by Google?",
+          "answer": "Depends on usage method.\n\nLocal deployment / offline use:\n- ✅ Data only stored on local device\n- ✅ Google collects no information\n- ✅ 100% privacy protection\n\nOnline use (like web version, API calls):\n- ⚠️ Data temporarily transmitted to Google servers for processing\n- ✅ Complies with GDPR compliance requirements\n- ✅ Not used for third-party sharing\n- ✅ Automatically deleted after processing complete"
+        },
+        "q2": {
+          "question": "How to ensure security when translating enterprise sensitive documents?",
+          "answer": "Use private deployment + data encryption.\n\nSecurity measures:\n1. Private deployment: All translation data stored locally, not uploaded to cloud\n2. Data encryption: Supports disk encryption, transmission encryption\n3. Access control: IP whitelist, API key verification\n4. Disable logs: Turn off automatic log upload function\n\nEnterprise-level security (custom version):\n- Complies with GDPR/HIPAA/SOC 2 compliance requirements\n- Regular security audits\n- Data backup and recovery\n- Dedicated security consultant"
+        },
+        "q3": {
+          "question": "Does it support data export?",
+          "answer": "Yes.\n\nSupported formats:\n- ✅ TXT plain text\n- ✅ Word (.docx)\n- ✅ PDF\n- ✅ JSON (API calls)\n- ✅ CSV (batch translation)\n\nEnterprise users can integrate with own storage systems through API: Alibaba Cloud OSS, AWS S3, Azure Blob Storage, private NAS"
+        }
+      },
+      "performance": {
+        "title": "Performance Optimization",
+        "q1": {
+          "question": "What if low-resource language translation accuracy is low?",
+          "answer": "Use fine-tuning + context correlation.\n\nSolution 1: Upload custom corpus for fine-tuning (≥1000 sentence pairs)\nSolution 2: Enable context correlation - Supplement scenario description when inputting text\n\nEffect improvement:\n- Accuracy improved by 15-30% after fine-tuning\n- Terminology consistency improved by 40%+"
+        },
+        "q2": {
+          "question": "How to optimize desktop translation lag?",
+          "answer": "Optimize resource usage + adjust settings.\n\nOptimization recommendations:\n1. Close background programs: Release GPU/CPU resources\n2. Disable real-time preview: Settings → Turn off 'real-time translation'\n3. Use batch mode: Process entire document at once, not sentence by sentence\n4. Enable quantization mode: Reduce memory usage"
+        },
+        "q3": {
+          "question": "How to improve batch translation efficiency?",
+          "answer": "Use cloud version + API batch mode.\n\nEnterprise users:\n- Use 27B cloud version: Distributed processing, speed increased by 2x\n- API batch mode: Submit 100 texts at once\n\nEfficiency improvement:\n- Batch mode 10x faster than sequential translation\n- 27B version 2x faster than 12B version\n- Parallel processing 5x faster than serial processing"
+        }
+      }
+    }
   }
 }

@@ -104,17 +104,17 @@ export function Footer() {
                 <div className="relative w-8 h-8">
                   <Image
                     src="/logo.png"
-                    alt="Get SaaS Logo"
+                    alt="TranslateGemma Logo"
                     fill
                     className="object-contain"
                   />
                 </div>
                 <span className="text-xl font-bold text-primary">
-                  Get SaaS
+                  TranslateGemma
                 </span>
               </Link>
               <p className="text-muted-foreground leading-relaxed max-w-sm">
-                {t("description")}
+                {locale === 'zh' ? 'Google DeepMind 开源AI翻译模型，支持55种语言、500+语言对，支持离线使用和私有化部署。' : 'Open-source AI translation model by Google DeepMind supporting 55 languages, 500+ language pairs, offline usage and private deployment.'}
               </p>
             </div>
           </div>
@@ -130,26 +130,35 @@ export function Footer() {
                     className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {t("services.features")}
+                    {locale === 'zh' ? '核心特点' : 'Features'}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection("pricing")}
+                    onClick={() => scrollToSection("demo")}
                     className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {t("services.pricing")}
+                    {locale === 'zh' ? '产品演示' : 'Demo'}
                   </button>
                 </li>
                 <li>
-                  <Link
-                    href={getLocalizedPath("/blog")}
+                  <button
+                    onClick={() => scrollToSection("testimonials")}
                     className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {t("services.blog")}
-                  </Link>
+                    {locale === 'zh' ? '用户评价' : 'Testimonials'}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("faq")}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
+                    {locale === 'zh' ? '常见问题' : 'FAQ'}
+                  </button>
                 </li>
               </ul>
             </div>

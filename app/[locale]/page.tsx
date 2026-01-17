@@ -3,16 +3,15 @@
 import { useEffect } from "react"
 
 import { Navbar } from "@/components/navbar"
-import { HeroSection } from "@/components/hero-section"
-import { FeaturesSection } from "@/components/features-section"
-import { PricingSection } from "@/components/pricing-section"
-import { Testimonials } from "@/components/testimonials"
-import { FAQSection } from "@/components/faq-section"
-import { BlogSection } from "@/components/blog-section"
+import { TranslateGemmaHero } from "@/components/translategemma/hero-section"
+import { TranslateGemmaFeatures } from "@/components/translategemma/features-section"
+import { TranslateGemmaDemo } from "@/components/translategemma/demo-section"
+import { TranslateGemmaTestimonials } from "@/components/translategemma/testimonials"
+import { TranslateGemmaFAQ } from "@/components/translategemma/faq-section"
 import { Footer } from "@/components/footer"
 import { PageBackground } from "@/components/page-background"
 
-export default function ChinesePage() {
+export default function TranslateGemmaPage() {
   useEffect(() => {
     // 处理URL中的锚点
     const hash = window.location.hash.replace('#', '')
@@ -29,15 +28,13 @@ export default function ChinesePage() {
 
   return (
     <PageBackground>
-
       <Navbar />
       <main>
-        <HeroSection />
-        <FeaturesSection />
-        <PricingSection />
-        <Testimonials />
-        <FAQSection />
-        <BlogSection />
+        <TranslateGemmaHero />
+        <TranslateGemmaFeatures />
+        <TranslateGemmaDemo />
+        <TranslateGemmaTestimonials />
+        <TranslateGemmaFAQ />
       </main>
       <Footer />
     </PageBackground>

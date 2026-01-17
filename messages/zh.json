@@ -697,5 +697,282 @@
       },
       "readMore": "阅读更多"
     }
+  },
+  "translategemma": {
+    "metadata": {
+      "title": "TranslateGemma - Google DeepMind 开源AI翻译 | 支持55种语言离线翻译",
+      "description": "TranslateGemma 是 Google DeepMind 2026年1月最新发布的开源翻译模型，支持55种语言、500+语言对，12B版本性能超越27B基线，支持离线使用和私有化部署。",
+      "keywords": "translategemma, AI翻译, 开源翻译模型, 离线翻译, Google DeepMind, 多语言翻译, 私有化部署, Gemma 3, 机器翻译"
+    },
+    "hero": {
+      "badge": "🚀 Google DeepMind 最新发布 - 2026年1月",
+      "title": "全球翻译，本地掌控",
+      "subtitle": "Google DeepMind 2026年1月最新发布 | 12B参数性能超越27B基线 | 支持55种语言500+语言对 | 完全开源可私有化部署",
+      "stats": {
+        "languages": "核心语言",
+        "languagePairs": "语言对",
+        "tokenContext": "Token上下文",
+        "openSource": "开源"
+      },
+      "cta": {
+        "download": "立即免费下载",
+        "demo": "观看演示视频"
+      },
+      "trust": {
+        "official": "Google DeepMind 官方出品",
+        "license": "Apache 2.0 协议",
+        "offline": "支持离线使用",
+        "community": "全球开发者社区支持"
+      }
+    },
+    "features": {
+      "title": "为什么选择 TranslateGemma？",
+      "subtitle": "下一代开源AI翻译解决方案",
+      "performance": {
+        "title": "性能翻倍，成本减半",
+        "description": "12B 参数版本性能超越 27B 基线模型，采用革命性 5:1 交错注意力机制，计算资源需求减少 50%，翻译速度提升 2 倍。",
+        "highlight1": "✅ 计算成本降低 50%",
+        "highlight2": "✅ 推理速度提升 2 倍",
+        "highlight3": "✅ 同等性能硬件要求更低",
+        "highlight4": "✅ 长文本处理内存占用接近线性增长"
+      },
+      "languages": {
+        "title": "全球语言，精准覆盖",
+        "description": "支持 55 种核心语言及近 500 种语言对，从主流语言到低资源语言全方位覆盖。通过 256k 超大词表设计，非英语语言编码效率提升 8 倍，低资源语言翻译准确率最高提升 30%。",
+        "highlight1": "✅ 主流语言：中、英、日、韩、法、德、西、俄等",
+        "highlight2": "✅ 小语种：冰岛语、威尔士语、斯瓦希里语等",
+        "highlight3": "✅ 双向翻译：500+ 语言对自由组合",
+        "highlight4": "✅ 术语适配：支持成语、俚语、专业术语精准转换"
+      },
+      "multimodal": {
+        "title": "拍照即译，无需OCR",
+        "description": "多模态翻译能力，图像文本统一处理。TranslateGemma 可直接翻译图像中的文本，告别繁琐的 OCR 预处理流程，无论是路牌、菜单、文档扫描件还是产品包装。",
+        "highlight1": "✅ 旅行：路牌、交通标识、餐厅菜单",
+        "highlight2": "✅ 办公：扫描文档、纸质合同、名片",
+        "highlight3": "✅ 购物：产品说明、包装标签",
+        "highlight4": "✅ 学习：课本、笔记、参考资料"
+      },
+      "deployment": {
+        "title": "全场景灵活部署",
+        "description": "从移动端到云端，三种版本满足所有需求：4B（移动端，≤2GB）、12B（笔记本端，≤18GB）、27B（云端，企业级性能）。",
+        "highlight1": "📱 4B 移动端版：智能手机、平板电脑、离线翻译",
+        "highlight2": "💻 12B 笔记本版：个人电脑、高精度翻译",
+        "highlight3": "☁️ 27B 云端版：服务器、分布式处理",
+        "highlight4": "⚡ 灵活量化：内存占用减少 30-50%，性能损失<3%"
+      },
+      "security": {
+        "title": "数据安全，隐私无忧",
+        "description": "支持完全离线使用，所有翻译数据存储在本地设备，谷歌不会收集任何信息。符合 GDPR、CCPA 等国际隐私法规要求，是处理敏感文档（合同、病历、财务报表）的最佳选择。",
+        "highlight1": "✅ 完全离线运行，无需联网",
+        "highlight2": "✅ 本地数据存储，零云端传输",
+        "highlight3": "✅ 支持数据加密与访问控制",
+        "highlight4": "✅ 符合 GDPR、HIPAA 等合规要求"
+      },
+      "opensource": {
+        "title": "开源生态，自由定制",
+        "description": "基于 Apache 2.0 开源协议，开发者可以自由使用、修改和分发。提供完整的 API 接口与 SDK，支持 Python、Java、JavaScript 等多种编程语言，轻松集成到现有产品中。",
+        "highlight1": "✅ 完整 API 文档与代码示例",
+        "highlight2": "✅ Python/Java/JavaScript SDK",
+        "highlight3": "✅ Docker 一键部署",
+        "highlight4": "✅ 活跃的开发者社区支持"
+      }
+    },
+    "demo": {
+      "title": "看 TranslateGemma 如何工作",
+      "subtitle": "真实场景，真实效果",
+      "videoPlaceholder": "视频演示",
+      "watchOnYoutube": "在 YouTube 观看",
+      "mobile": {
+        "title": "移动端离线拍照翻译",
+        "description": "旅行者在日本餐厅查看日文菜单",
+        "highlight1": "✈️ 完全离线环境（开启飞行模式）",
+        "highlight2": "📸 打开相机拍摄日文菜单",
+        "highlight3": "⚡ 1 秒内完成识别和翻译",
+        "highlight4": "📖 显示中文翻译结果，包含料理说明"
+      },
+      "desktop": {
+        "title": "桌面端长文档批量翻译",
+        "description": "企业用户翻译 3 万字产品说明书",
+        "highlight1": "📄 上传 3 万字中文 Word 文档",
+        "highlight2": "🌐 选择目标语言（英语、日语、德语）",
+        "highlight3": "⏱️ 5 分钟内完成 3 种语言翻译",
+        "highlight4": "📥 导出为 Word/PDF 格式，保留原始排版"
+      },
+      "developer": {
+        "title": "开发者 API 快速集成",
+        "description": "为电商网站添加多语言商品描述",
+        "highlight1": "🔌 安装 Python SDK（pip install translategemma）",
+        "highlight2": "💻 10 行代码完成 API 调用",
+        "highlight3": "🚀 批量翻译 100 个商品描述",
+        "highlight4": "✅ 自动检测质量并返回翻译结果"
+      },
+      "official": {
+        "title": "官方核心功能全景",
+        "description": "Google 开发者大会完整演示",
+        "highlight1": "📱 移动端实时耳机翻译（保留语气语调）",
+        "highlight2": "💻 桌面端 128k Token 长文档翻译",
+        "highlight3": "📸 多模态图像翻译（路牌、菜单、文档）",
+        "highlight4": "🎯 企业级私有化部署方案"
+      }
+    },
+    "testimonials": {
+      "title": "全球用户的信赖之选",
+      "subtitle": "加入数千名用户，体验 TranslateGemma 的强大功能",
+      "stats": {
+        "languages": "核心语言",
+        "efficiency": "成本降低",
+        "downloads": "下载量",
+        "githubStars": "GitHub Stars"
+      },
+      "user1": {
+        "name": "张小姐",
+        "title": "旅行博主",
+        "content": "作为一个经常出国旅行的人，TranslateGemma 的离线翻译功能简直太实用了！去年在冰岛旅行时，很多地方没有网络信号，但我依然可以用手机拍照翻译路牌和菜单。翻译准确率很高，冰岛语这种小语种也能准确识别。5 星推荐！"
+      },
+      "user2": {
+        "name": "李先生",
+        "title": "跨境电商 CTO",
+        "content": "我们公司是跨境电商，每月需要翻译大量产品描述到 30+ 种语言。以前用翻译 API，每月成本超过 $5000。部署 TranslateGemma 后，成本降到 $1500，而且翻译质量更好，专业术语也更准确。私有化部署让我们的产品策略更安全。"
+      },
+      "user3": {
+        "name": "王博士",
+        "title": "某高校计算机专业博士生",
+        "content": "作为一名博士生，我每周需要阅读大量英文文献。TranslateGemma 的长文档翻译功能让我可以快速理解论文核心内容，尤其是专业术语翻译非常准确。128k Token 支持意味着我可以一次翻译整篇论文，不用手动拆分。现在我的文献阅读效率提升了至少 5 倍！"
+      },
+      "user4": {
+        "name": "刘主任",
+        "title": "某三甲医院国际部主任",
+        "content": "我们医院有大量国际患者，需要翻译病历和医嘱。TranslateGemma 的私有化部署完美解决了我们的数据安全顾虑。医疗术语翻译准确，支持定制医学词库，完全符合 HIPAA 合规要求。已经在全院推广使用。"
+      },
+      "user5": {
+        "name": "Alex Chen",
+        "title": "独立开发者",
+        "content": "作为一名独立开发者，我需要为自己的 SaaS 产品添加多语言支持。TranslateGemma 的 API 非常简单易用，10 分钟就完成了集成。而且完全开源，我可以根据需要进行定制。最重要的是月 100 万字符免费额度，让我的初创成本几乎为零！"
+      },
+      "authority": {
+        "title": "权威认可",
+        "githubStars": "GitHub Star 数：25,000+（发布仅 2 周）",
+        "downloads": "Hugging Face 下载量：500,000+",
+        "rating": "开发者社区评分：4.8/5.0"
+      }
+    },
+    "faq": {
+      "title": "常见问题解答",
+      "subtitle": "查找关于 TranslateGemma 的常见问题答案",
+      "installation": {
+        "title": "安装与版本",
+        "q1": {
+          "question": "iOS 版什么时候正式上线？",
+          "answer": "目前 iOS 仅支持通过 TestFlight 获取测试版。官方计划 2026 年将测试版推广至 App Store，具体时间以谷歌 AI 官网公告为准。\n\n临时替代方案：\n- iOS 用户可通过浏览器访问谷歌翻译网页版，间接使用 TranslateGemma 的核心翻译功能\n- 或在 Mac 设备上使用桌面版"
+        },
+        "q2": {
+          "question": "移动端安装需要 root 或越狱吗？",
+          "answer": "不需要。\n\n- Android 版：直接下载 APK 文件，在设置中允许「未知来源安装」即可完成安装\n- iOS 测试版：通过 TestFlight 安装，无需越狱\n\n安装过程与普通 App 完全相同，不会影响设备保修和安全性。"
+        },
+        "q3": {
+          "question": "不同版本的模型可以同时安装吗？",
+          "answer": "可以。\n\n- 移动端与桌面端：4B 移动端版和 12B 桌面版可独立安装，互不冲突\n- 开发者部署：不同参数版本（4B/12B/27B）需分开存储权重文件\n\n建议做法：使用不同目录区分，加载时指定对应路径。"
+        },
+        "q4": {
+          "question": "模型下载中断后如何续传？",
+          "answer": "支持断点续传。\n\n移动端：\n- 重新进入下载页面，系统自动识别已下载部分\n- 支持断点续传，无需重新下载\n\n桌面端 / 开发者：\n- Python 包安装：pip install 支持自动续传\n- Docker 部署：重新执行 docker pull 命令即可\n- 手动下载：使用 wget -c 或 curl -C - 支持续传"
+        }
+      },
+      "usage": {
+        "title": "功能使用",
+        "q1": {
+          "question": "支持哪些图像格式的拍照翻译？",
+          "answer": "支持常见图像格式。\n\n支持格式：\n- ✅ JPG / JPEG\n- ✅ PNG\n- ✅ PDF 扫描件\n- ✅ WebP\n- ✅ BMP\n\n暂不支持：\n- ❌ GIF 动图\n- ❌ 视频文件（MP4/AVI 等）\n- ❌ 动态内容"
+        },
+        "q2": {
+          "question": "离线翻译支持所有 55 种核心语言吗？",
+          "answer": "支持，但需提前下载语言包。\n\n文本翻译：\n- 支持所有 55 种语言离线使用\n- 需提前下载对应语言包（设置 → 离线语言）\n- 单语言包大小 ≤500MB\n\n语音翻译：\n- 离线支持仅限 12 种主流语言：中文、英语、日语、韩语、法语、德语、西班牙语、俄语、阿拉伯语、葡萄牙语、意大利语、荷兰语\n- 低资源语言离线仅支持文本翻译"
+        },
+        "q3": {
+          "question": "成语、俚语等复杂表达能准确翻译吗？",
+          "answer": "可以。TranslateGemma 通过 Gemini 引擎进行「语境校对」，避免逐字直译。\n\n真实案例：\n- 英语 \"stealing my thunder\" → 中文「抢风头」（非\"偷走我的雷声\"）\n- 英语 \"piece of cake\" → 中文「小菜一碟」（非\"一块蛋糕\"）\n- 中文「加油」→ \"Come on\" / \"Keep up the good work\"（根据语境）\n- 中文「画蛇添足」→ \"Gild the lily\""
+        },
+        "q4": {
+          "question": "长文本翻译的上限是多少？",
+          "answer": "取决于使用的模型版本。\n\n- 4B 移动版：32k Token（约 8000 字），建议单次处理 ≤5000 字\n- 12B 桌面版：128k Token（约 30000 字），建议 ≤30000 字\n- 27B 云端版：128k Token（约 30000 字），支持整文档处理\n\n超长文档处理建议：12B 版处理 5 万字以上文档，建议拆分段落。支持 Word/PDF 格式直接翻译，保留原始排版、图片、表格。"
+        },
+        "q5": {
+          "question": "支持实时耳机翻译吗？",
+          "answer": "支持。\n\n功能特点：\n- ✅ 支持 70+ 语言实时翻译\n- ✅ 保留说话者语气和语调\n- ✅ 适配任意耳机（无需专用设备）\n- ✅ 双向翻译\n\n当前状态：\n- Android 版：已上线测试版\n- iOS 版：计划 2026 年推广"
+        }
+      },
+      "technical": {
+        "title": "技术部署",
+        "q1": {
+          "question": "Python 3.9 及以下版本能兼容吗？",
+          "answer": "不兼容。\n\n最低要求：\n- Python 3.10+\n- 推荐 Python 3.11 或 3.12\n\n原因：TranslateGemma 依赖的底层库（如 transformers、torch）需要 Python 3.10+ 的特性。"
+        },
+        "q2": {
+          "question": "Docker 部署需要多少内存？",
+          "answer": "内存要求取决于模型版本。\n\n最低配置：\n- 4B：RAM + VRAM 总和 ≥6 GB，建议 8 GB\n- 12B：RAM + VRAM 总和 ≥18 GB，建议 24 GB\n- 27B：RAM + VRAM 总和 ≥54 GB，建议 64 GB+\n\n端口冲突解决：如果 8080 端口被占用，启动时替换端口：docker run -p 8081:8080 translategemma:12b"
+        },
+        "q3": {
+          "question": "模型微调需要什么硬件配置？",
+          "answer": "取决于微调规模和数据量。\n\n低资源语言微调（≥500 句对）：\n- 12B 版：RTX 4090 / M3 Max 显卡\n- 27B 版：单张 H100 GPU\n\n企业级定制微调：建议使用分布式 GPU 部署（2-4 张 A100/H100），提升训练效率，缩短微调周期。"
+        },
+        "q4": {
+          "question": "如何解决「模型加载后显存溢出」问题？",
+          "answer": "使用量化或优化加载方式。\n\n解决方案一：INT8 量化（推荐）\n- 内存占用从 24GB 降至 12GB\n- 速度提升 30%\n- 性能损失 <3%\n\n解决方案二：FP16 半精度\n- 内存占用减少 50%\n- 性能损失 <1%\n\n解决方案三：减少并发\n- 避免同时处理多个长文本\n- 设置 batch_size=1\n- 关闭其他占用 GPU 的程序"
+        },
+        "q5": {
+          "question": "支持哪些编程语言的 API 调用？",
+          "answer": "原生支持 Python、Java、JavaScript，其他语言通过 HTTP API。\n\nPython（推荐）、JavaScript/TypeScript、Java 原生支持。\n\n其他语言（通过 HTTP API）：启动 Docker 容器提供 HTTP API，使用 curl 调用（适用于 Go/C#/PHP/Ruby 等）"
+        }
+      },
+      "commercial": {
+        "title": "商业与权限",
+        "q1": {
+          "question": "非盈利使用完全免费吗？",
+          "answer": "是的，完全免费，无任何限制。\n\n非盈利场景包括：\n- ✅ 个人学习、研究\n- ✅ 公益项目、慈善组织\n- ✅ 教育机构教学使用\n- ✅ 开源项目开发\n\n无需签署额外协议，直接下载使用即可。"
+        },
+        "q2": {
+          "question": "商业使用的收费规则是什么？",
+          "answer": "免费额度 + 按量计费。\n\n免费额度：\n- 月翻译量 ≤100 万字符（约 50 万中文字）免费\n\n超额收费：\n- 超出部分按 $0.001/字符计费\n- 月底统一结算\n\n计费示例：\n- 月翻译 50 万字符 → $0\n- 月翻译 200 万字符 → (200万 - 100万) × $0.001 = $1000"
+        },
+        "q3": {
+          "question": "私有化部署是否额外收费？",
+          "answer": "私有化部署本身不收费。\n\n说明：\n- 私有化部署属于部署方式，不额外收费\n- 但商业使用需遵守计费规则（免费额度同样适用）\n- 企业定制版可获得专属部署架构设计服务（包含在套餐中）"
+        },
+        "q4": {
+          "question": "可以将 TranslateGemma 集成到自有产品中吗？",
+          "answer": "可以。\n\n要求：\n- ✅ 开源协议允许二次开发和产品集成\n- ✅ 需在产品说明中注明「基于 TranslateGemma 构建」\n- ✅ 遵循 Apache 2.0 开源协议的版权要求\n\n商业产品：如果集成到商业产品中，需遵守商业使用的计费规则"
+        }
+      },
+      "security": {
+        "title": "数据安全",
+        "q1": {
+          "question": "翻译数据会被谷歌收集吗？",
+          "answer": "取决于使用方式。\n\n本地部署 / 离线使用：\n- ✅ 数据仅存储在本地设备\n- ✅ 谷歌不会收集任何信息\n- ✅ 100% 隐私保护\n\n在线使用（如网页版、API 调用）：\n- ⚠️ 数据会暂时传输至谷歌服务器进行处理\n- ✅ 遵循 GDPR 合规要求\n- ✅ 不会用于第三方共享\n- ✅ 处理完成后自动删除"
+        },
+        "q2": {
+          "question": "如何保障企业敏感文档（如合同、医疗报告）的翻译安全？",
+          "answer": "使用私有化部署 + 数据加密。\n\n安全措施：\n1. 私有化部署：所有翻译数据本地存储，不上传云端\n2. 数据加密：支持磁盘加密、传输加密\n3. 访问控制：IP 白名单、API 密钥验证\n4. 禁用日志：关闭自动上传日志功能\n\n企业级安全（定制版）：\n- 符合 GDPR/HIPAA/SOC 2 合规要求\n- 定期安全审计\n- 数据备份与恢复\n- 专属安全顾问"
+        },
+        "q3": {
+          "question": "支持数据导出吗？",
+          "answer": "支持。\n\n支持格式：\n- ✅ TXT 纯文本\n- ✅ Word (.docx)\n- ✅ PDF\n- ✅ JSON（API 调用）\n- ✅ CSV（批量翻译）\n\n企业用户可通过 API 对接自有存储系统：阿里云 OSS、AWS S3、Azure Blob Storage、私有 NAS"
+        }
+      },
+      "performance": {
+        "title": "性能优化",
+        "q1": {
+          "question": "低资源语言翻译准确率低怎么办？",
+          "answer": "使用微调 + 上下文关联。\n\n解决方案一：上传自定义语料库微调（≥1000 句对）\n解决方案二：开启上下文关联 - 输入文本时补充场景说明\n\n效果提升：\n- 微调后准确率提升 15-30%\n- 术语一致性提升 40%+"
+        },
+        "q2": {
+          "question": "桌面端翻译卡顿如何优化？",
+          "answer": "优化资源占用 + 调整设置。\n\n优化建议：\n1. 关闭后台程序：释放 GPU/CPU 资源\n2. 禁用实时预览：设置 → 关闭「实时翻译」\n3. 使用批量模式：一次处理整个文档，而非逐句翻译\n4. 启用量化模式：减少内存占用"
+        },
+        "q3": {
+          "question": "如何提升批量翻译的效率？",
+          "answer": "使用云端版 + API 批量模式。\n\n企业用户：\n- 使用 27B 云端版：分布式处理，速度提升 2 倍\n- API 批量模式：一次提交 100 条文本\n\n效率提升：\n- 批量模式比逐条翻译快 10 倍\n- 27B 版比 12B 版快 2 倍\n- 并行处理比串行处理快 5 倍"
+        }
+      }
+    }
   }
 }

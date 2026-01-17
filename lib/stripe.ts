@@ -7,7 +7,7 @@ export const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHAB
 // 服务端Stripe实例 - 只在有密钥时初始化
 export const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2025-07-30.basil',
+      // apiVersion: '2025-07-30.basil',
       typescript: true,
     })
   : null

@@ -85,30 +85,14 @@ export function verifyWebhookSignature(payload: string, signature: string): bool
 
 // 积分购买产品配置 - 对应Creem的产品ID
 export const CREEM_PRODUCTS = {
-  starter: {
-    id: 'starter',
-    name: '入门套餐',
-    points: 5000,
-    price: 8,
-    productId: process.env.CREEM_PRODUCT_STARTER_ID || '',
-    description: '适合新用户试用',
-  },
   popular: {
     id: 'popular',
-    name: '热门套餐',
-    points: 10000,
-    price: 15,
+    name: '积分套餐',
+    points: 300,
+    price: 10,
     productId: process.env.CREEM_PRODUCT_POPULAR_ID || '',
-    description: '最受欢迎的选择',
+    description: '10美金300积分',
     popular: true,
-  },
-  premium: {
-    id: 'premium',
-    name: '高级套餐',
-    points: 100000,
-    price: 150,
-    productId: process.env.CREEM_PRODUCT_PREMIUM_ID || '',
-    description: '适合重度用户',
   },
 } as const
 

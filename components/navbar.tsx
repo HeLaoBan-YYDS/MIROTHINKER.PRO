@@ -83,33 +83,39 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium"
             >
               {t("home")}
             </button>
             <button
-              onClick={() => scrollToSection("features")}
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
+              onClick={() => scrollToSection("models")}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium"
             >
-              {t("features")}
+              {locale === 'zh' ? '模型版本' : 'Models'}
             </button>
             <button
-              onClick={() => scrollToSection("demo")}
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
+              onClick={() => scrollToSection("advantages")}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium"
             >
-              {locale === 'zh' ? '产品演示' : 'Demo'}
+              {locale === 'zh' ? '核心优势' : 'Advantages'}
             </button>
             <button
-              onClick={() => scrollToSection("testimonials")}
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
+              onClick={() => scrollToSection("use-cases")}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium"
             >
-              {locale === 'zh' ? '用户评价' : 'Testimonials'}
+              {locale === 'zh' ? '使用场景' : 'Use Cases'}
+            </button>
+            <button
+              onClick={() => scrollToSection("developer")}
+              className="text-muted-foreground hover:text-primary transition-colors font-medium"
+            >
+              {locale === 'zh' ? '开发者' : 'Developer'}
             </button>
             <button
               onClick={() => scrollToSection("faq")}
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium hover:scale-105 transform"
+              className="text-muted-foreground hover:text-primary transition-colors font-medium"
             >
-              {locale === 'zh' ? '常见问题' : 'FAQ'}
+              FAQ
             </button>
           </div>
 
@@ -118,8 +124,8 @@ export function Navbar() {
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary hover:bg-secondary transition-all duration-300">
-                  <Globe className="h-4 w-4 mr-2 text-primary" />
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
+                  <Globe className="h-4 w-4 mr-2" />
                   {locale === "zh" ? "中" : "EN"}
                 </Button>
               </DropdownMenuTrigger>
@@ -131,9 +137,9 @@ export function Navbar() {
 
             {/* Theme Toggle */}
             {mounted && (
-              <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-muted-foreground hover:text-primary hover:bg-secondary transition-all duration-300">
-                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-primary" />
-                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-primary" />
+              <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
+                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Toggle theme</span>
               </Button>
             )}
@@ -144,8 +150,8 @@ export function Navbar() {
             ) : session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-muted-foreground hover:text-primary hover:bg-secondary transition-all duration-300">
-                    <User className="h-4 w-4 text-primary" />
+                  <Button variant="ghost" size="sm" className="flex items-center space-x-2 text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
+                    <User className="h-4 w-4" />
                     <span className="hidden lg:inline">{session.user?.name || session.user?.email}</span>
                   </Button>
                 </DropdownMenuTrigger>
@@ -165,10 +171,10 @@ export function Navbar() {
               </DropdownMenu>
             ) : (
               <div className="flex items-center space-x-3">
-                <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary hover:bg-secondary transition-all duration-300">
+                <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
                   <Link href={getLocalizedPath("/auth/signin")}>{t("signIn")}</Link>
                 </Button>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 cyber-glow hover:scale-105 transform" asChild>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors" asChild>
                   <Link href={getLocalizedPath("/auth/signup")}>{t("signUp")}</Link>
                 </Button>
               </div>
@@ -177,8 +183,8 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all duration-300">
-              {isMenuOpen ? <X className="h-6 w-6 text-primary" /> : <Menu className="h-6 w-6 text-primary" />}
+            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
@@ -253,10 +259,10 @@ export function Navbar() {
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <Button variant="ghost" size="sm" className="w-full text-foreground hover:text-primary hover:bg-primary/20" asChild>
+                    <Button variant="ghost" size="sm" className="w-full text-foreground hover:text-primary hover:bg-secondary" asChild>
                       <Link href={getLocalizedPath("/auth/signin")}>{t("signIn")}</Link>
                     </Button>
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 cyber-glow" asChild>
+                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors" asChild>
                       <Link href={getLocalizedPath("/auth/signup")}>{t("signUp")}</Link>
                     </Button>
                   </div>
@@ -266,20 +272,20 @@ export function Navbar() {
                 <div className="flex items-center space-x-2 px-3 py-2">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all duration-300">
-                        <Globe className="h-4 w-4 mr-2 text-primary" />
+                      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
+                        <Globe className="h-4 w-4 mr-2" />
                         {locale === "zh" ? "中" : "EN"}
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-secondary border-primary/30">
-                      <DropdownMenuItem onClick={() => switchLocale("zh")} className="text-foreground hover:bg-primary/20 hover:text-primary">中文</DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => switchLocale("en")} className="text-foreground hover:bg-primary/20 hover:text-primary">English</DropdownMenuItem>
+                    <DropdownMenuContent className="bg-secondary border">
+                      <DropdownMenuItem onClick={() => switchLocale("zh")} className="text-foreground hover:bg-secondary hover:text-primary">中文</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => switchLocale("en")} className="text-foreground hover:bg-secondary hover:text-primary">English</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                   {mounted && (
-                    <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all duration-300">
-                      <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-primary" />
-                      <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-primary" />
+                    <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-muted-foreground hover:text-primary hover:bg-secondary transition-colors">
+                      <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     </Button>
                   )}
                 </div>

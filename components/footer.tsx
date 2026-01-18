@@ -113,52 +113,83 @@ export function Footer() {
                   TranslateGemma
                 </span>
               </Link>
-              <p className="text-muted-foreground leading-relaxed max-w-sm">
-                {locale === 'zh' ? 'Google DeepMind 开源AI翻译模型，支持55种语言、500+语言对，支持离线使用和私有化部署。' : 'Open-source AI translation model by Google DeepMind supporting 55 languages, 500+ language pairs, offline usage and private deployment.'}
+              <p className="text-muted-foreground leading-relaxed max-w-sm text-sm">
+                {locale === 'zh' ? 'TranslateGemma 是 Google DeepMind 基于 Gemma 架构开发的开源翻译模型家族，2026 年 1 月发布，专注于提供"精准、安全、可定制"的全球化翻译解决方案，推动跨文化无障碍沟通。' : 'TranslateGemma is an open-source translation model family developed by Google DeepMind based on the Gemma architecture, released in January 2026, focusing on providing "accurate, secure, and customizable" global translation solutions to promote barrier-free cross-cultural communication.'}
               </p>
             </div>
           </div>
 
-          {/* Services */}
+          {/* Product Links */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <h4 className="font-semibold text-foreground text-lg">{t("services.title")}</h4>
-              <ul className="space-y-3">
+              <h4 className="font-semibold text-foreground text-lg">
+                {locale === 'zh' ? '产品链接' : 'Product'}
+              </h4>
+              <ul className="space-y-3 text-sm">
                 <li>
-                  <button
-                    onClick={() => scrollToSection("features")}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {locale === 'zh' ? '核心特点' : 'Features'}
-                  </button>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '模型下载中心' : 'Model Downloads'}
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection("demo")}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {locale === 'zh' ? '产品演示' : 'Demo'}
-                  </button>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? 'API 文档' : 'API Docs'}
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection("testimonials")}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {locale === 'zh' ? '用户评价' : 'Testimonials'}
-                  </button>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '技术白皮书' : 'Whitepaper'}
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => scrollToSection("faq")}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all duration-300" />
-                    {locale === 'zh' ? '常见问题' : 'FAQ'}
-                  </button>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '更新日志' : 'Changelog'}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '路线图' : 'Roadmap'}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Legal & Compliance */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h4 className="font-semibold text-foreground text-lg">
+                {locale === 'zh' ? '法律与合规' : 'Legal'}
+              </h4>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <Link href={getLocalizedPath("/privacy")} className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '隐私政策' : 'Privacy Policy'}
+                  </Link>
+                </li>
+                <li>
+                  <Link href={getLocalizedPath("/terms")} className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '服务条款' : 'Terms of Service'}
+                  </Link>
+                </li>
+                <li>
+                  <Link href={getLocalizedPath("/cookies")} className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? 'Cookie 设置' : 'Cookies'}
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1 h-1 bg-primary rounded-full mr-3 group-hover:w-2 transition-all" />
+                    {locale === 'zh' ? '负责任 AI 实践' : 'Responsible AI'}
+                  </a>
                 </li>
               </ul>
             </div>
@@ -225,9 +256,33 @@ export function Footer() {
               )}
             </form>
 
-            {/* Social Links */}
+            {/* Contact */}
             <div className="pt-4">
-              <div className="flex space-x-3">
+              <p className="text-xs text-muted-foreground mb-2">
+                {locale === 'zh' ? '联系我们' : 'Contact'}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                support@translategemma.org
+              </p>
+              <div className="flex space-x-3 mt-4">
+                <a
+                  href="https://github.com/google"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  title="GitHub"
+                >
+                  <SiGithub className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://x.com/zyailive"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  title="X (Twitter)"
+                >
+                  <Twitter className="h-5 w-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -237,7 +292,7 @@ export function Footer() {
         <div className="border-t border-dark-600/50 mt-4 pt-4 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-4 mb-2 md:mb-0">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} {t("copyright")}
+              © {currentYear} TranslateGemma. All Rights Reserved. {locale === 'zh' ? '基于 Google Gemma 开源协议分发。' : 'Distributed under Google Gemma Open Source License.'}
             </p>
           </div>
 
